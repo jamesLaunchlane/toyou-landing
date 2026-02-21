@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-W2M8WTEET9"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-W2M8WTEET9');</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>너에게 | 당신의 이야기가 사랑하는 사람에게 닿을 수 있도록</title>
+  <meta name="description" content="매일 짧은 AI 대화로 하루를 기록하고, 체크인 알림과 마지막 메시지를 소중한 사람에게 전하세요.">
+  <meta property="og:title" content="너에게 — 당신의 이야기가 사랑하는 사람에게 닿을 수 있도록">
+  <meta property="og:description" content="매일 짧은 AI 대화로 하루를 기록하고, 체크인 알림과 마지막 메시지를 소중한 사람에게 전하세요.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://toyou.launchlane.io">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "너에게",
+    "operatingSystem": "iOS, Android",
+    "applicationCategory": "HealthApplication",
+    "description": "매일 짧은 AI 대화로 하루를 기록하고, 소중한 사람에게 체크인 알림과 마지막 메시지를 전하는 앱.",
+    "offers": [
+      { "@type": "Offer", "price": "0", "priceCurrency": "KRW", "description": "무료 플랜" },
+      { "@type": "Offer", "price": "4900", "priceCurrency": "KRW", "description": "프리미엄 월 구독" },
+      { "@type": "Offer", "price": "19900", "priceCurrency": "KRW", "description": "VIP 월 구독" }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "LaunchLane",
+      "url": "https://launchlane.io"
+    }
+  }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#C47A3C',
+            'primary-dark': '#A86030',
+            'primary-soft': '#FAF0E6',
+            secondary: '#5B4A3F',
+            accent: '#C9A87C',
+            guardian: '#3D7068',
+            legacy: '#5E4F7A',
+          },
+          fontFamily: {
+            sans: ['"Noto Sans KR"', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    .fade-in { animation: fadeIn 0.8s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body class="font-sans text-gray-800 bg-primary-soft">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-primary-soft/95 backdrop-blur shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="#" class="text-xl font-bold text-primary">
+          너에게
+        </a>
+        <div class="hidden sm:flex items-center gap-6 text-sm font-medium text-secondary">
+          <a href="#pain" class="hover:text-primary transition-colors">고민</a>
+          <a href="#features" class="hover:text-primary transition-colors">기능</a>
+          <a href="#pricing" class="hover:text-primary transition-colors">요금</a>
+          <a href="/blog/" class="hover:text-primary transition-colors">블로그</a>
+        </div>
+        <a href="#waitlist"
+           class="bg-primary hover:bg-primary-dark text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5">
+          사전 신청
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="pt-28 pb-20 sm:pt-36 sm:pb-28 bg-gradient-to-br from-primary-soft via-white to-orange-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="inline-block bg-primary/10 text-primary text-sm font-medium px-4 py-1.5 rounded-full mb-6">
+        매일 1분, AI와 나누는 따뜻한 대화
+      </span>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight text-gray-900 mb-6">
+        당신의 이야기가<br>
+        <span class="text-primary">사랑하는 사람에게 닿도록</span>
+      </h1>
+      <p class="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed">
+        매일 짧은 대화로 하루를 기록하고,<br>
+        소중한 사람에게 체크인 알림과 마지막 메시지를 전하세요.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#waitlist"
+           class="w-full sm:w-auto bg-primary hover:bg-primary-dark text-white font-bold text-lg px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-xl hover:-translate-y-1">
+          사전 신청하기
+        </a>
+        <a href="#features"
+           class="w-full sm:w-auto border-2 border-gray-300 hover:border-primary text-gray-700 hover:text-primary font-medium text-lg px-8 py-4 rounded-xl transition-all duration-200">
+          어떤 앱인가요?
+        </a>
+      </div>
+      <p class="mt-6 text-sm text-gray-400">출시 알림을 받으세요 &middot; 무료로 시작</p>
+    </div>
+  </section>
+
+  <!-- Pain Points -->
+  <section id="pain" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">이런 마음, 한 번쯤 드셨나요?</h2>
+        <p class="text-gray-500 text-lg">소중한 사람을 생각하는 마음, 그 시작을 함께합니다</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="group bg-white border border-gray-200 rounded-2xl p-8 text-center hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+          <div class="text-5xl mb-5">&#128148;</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">"부모님이 괜찮다고 하셨는데..."</h3>
+          <p class="text-gray-500 leading-relaxed">
+            전화할 때마다 "괜찮다"고 하시지만, 정말 괜찮으신 건지 마음이 놓이지 않습니다. 매일 안부를 확인할 수 있다면 좋겠어요.
+          </p>
+        </div>
+        <div class="group bg-white border border-gray-200 rounded-2xl p-8 text-center hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+          <div class="text-5xl mb-5">&#128221;</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">"말로 못한 이야기가 있어요"</h3>
+          <p class="text-gray-500 leading-relaxed">
+            고맙다, 사랑한다, 미안하다... 직접 말하기 어려운 마음들. 미리 글로라도 남겨두고 싶은데, 어디서 시작해야 할지 모르겠어요.
+          </p>
+        </div>
+        <div class="group bg-white border border-gray-200 rounded-2xl p-8 text-center hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+          <div class="text-5xl mb-5">&#128532;</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">"혼자 계시는 시간이 걱정돼요"</h3>
+          <p class="text-gray-500 leading-relaxed">
+            독거하시는 부모님, 혼자 지내시는 어르신. 갑자기 쓰러지시거나 문제가 생기면 누가 알 수 있을까요.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solution -->
+  <section id="solution" class="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="inline-block bg-primary/10 text-primary text-sm font-medium px-4 py-1.5 rounded-full mb-4">
+            너에게가 함께합니다
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6 leading-tight">
+            매일 1분이면 충분합니다.<br><span class="text-primary">마음을 전하세요.</span>
+          </h2>
+          <p class="text-gray-600 text-lg leading-relaxed mb-8">
+            너에게는 매일 간단한 체크인으로 안부를 확인하고, AI와 대화하듯 하루를 기록하고, 소중한 사람에게 나의 마음을 미리 전할 수 있는 앱입니다.
+          </p>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="text-primary text-xl mt-0.5">&#10003;</span>
+              <div>
+                <span class="font-semibold text-gray-900">체크인 하나로 안부 확인</span>
+                <p class="text-gray-500 text-sm mt-1">버튼 하나만 누르면 가족에게 "오늘도 잘 있다"는 안부가 전해집니다.</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-primary text-xl mt-0.5">&#10003;</span>
+              <div>
+                <span class="font-semibold text-gray-900">AI(너에게)와 나누는 대화 일기</span>
+                <p class="text-gray-500 text-sm mt-1">어려운 글쓰기 대신, AI와 편하게 대화하면 하루 기록이 자동으로 완성됩니다.</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-primary text-xl mt-0.5">&#10003;</span>
+              <div>
+                <span class="font-semibold text-gray-900">미체크인 시 지킴이에게 알림</span>
+                <p class="text-gray-500 text-sm mt-1">설정한 시간까지 체크인이 없으면, 등록된 지킴이에게 자동으로 알림이 갑니다.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+          <div class="text-center mb-6">
+            <p class="text-sm text-gray-400 font-medium">이런 분들에게 추천합니다</p>
+          </div>
+          <div class="space-y-6">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-2xl">&#128104;&#8205;&#129459;</div>
+              <div>
+                <div class="text-lg font-bold text-gray-900">50-70대 어르신</div>
+                <div class="text-sm text-gray-500">매일 체크인으로 안부를 전할 수 있어요</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-guardian/10 rounded-xl flex items-center justify-center text-2xl">&#128106;</div>
+              <div>
+                <div class="text-lg font-bold text-gray-900">멀리 사는 자녀</div>
+                <div class="text-sm text-gray-500">지킴이 등록으로 부모님 안부를 확인해요</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-legacy/10 rounded-xl flex items-center justify-center text-2xl">&#128140;</div>
+              <div>
+                <div class="text-lg font-bold text-gray-900">마음을 남기고 싶은 분</div>
+                <div class="text-sm text-gray-500">레거시 메시지로 사랑을 미리 전해요</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center text-2xl">&#128214;</div>
+              <div>
+                <div class="text-lg font-bold text-gray-900">기록을 좋아하는 분</div>
+                <div class="text-sm text-gray-500">AI와 대화하듯 편하게 매일 일기를 써요</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">너에게의 기능</h2>
+        <p class="text-gray-500 text-lg">따뜻한 기술로, 소중한 일상을 지킵니다</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Feature 1: Check-in -->
+        <div class="group bg-gradient-to-br from-orange-50 to-white border border-orange-100 rounded-2xl p-8 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+          <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform duration-300">
+            &#9745;
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">일일 체크인</h3>
+          <p class="text-gray-500 leading-relaxed">
+            매일 기분을 선택하고 체크인 버튼 하나만 누르세요. "오늘도 잘 있다"는 안부가 가족에게 전해집니다.
+          </p>
+          <ul class="mt-4 space-y-2 text-sm text-gray-500">
+            <li class="flex items-center gap-2"><span class="text-primary">&#8226;</span> 3가지 기분 선택 (좋음/보통/힘듦)</li>
+            <li class="flex items-center gap-2"><span class="text-primary">&#8226;</span> 한 번의 터치로 완료</li>
+            <li class="flex items-center gap-2"><span class="text-primary">&#8226;</span> 주간 체크인 기록 확인</li>
+          </ul>
+        </div>
+        <!-- Feature 2: AI Diary -->
+        <div class="group bg-gradient-to-br from-amber-50 to-white border border-amber-100 rounded-2xl p-8 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+          <div class="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform duration-300">
+            &#128172;
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">AI 대화 일기</h3>
+          <p class="text-gray-500 leading-relaxed">
+            AI(너에게)가 "오늘 하루 어떠셨어요?"라고 먼저 말을 걸어요. 편하게 대화하면 일기가 자동으로 완성됩니다.
+          </p>
+          <ul class="mt-4 space-y-2 text-sm text-gray-500">
+            <li class="flex items-center gap-2"><span class="text-accent">&#8226;</span> 따뜻하고 공감하는 대화</li>
+            <li class="flex items-center gap-2"><span class="text-accent">&#8226;</span> 대화 → 일기 자동 정리</li>
+            <li class="flex items-center gap-2"><span class="text-accent">&#8226;</span> 지난 일기 다시 보기</li>
+          </ul>
+        </div>
+        <!-- Feature 3: Guardian -->
+        <div class="group bg-gradient-to-br from-teal-50 to-white border border-teal-100 rounded-2xl p-8 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+          <div class="w-14 h-14 bg-guardian/10 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform duration-300">
+            &#128737;
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">지킴이 알림</h3>
+          <p class="text-gray-500 leading-relaxed">
+            하루 동안 체크인이 없으면, 등록한 지킴이(가족, 이웃)에게 자동으로 안부 확인 알림이 전송됩니다.
+          </p>
+          <ul class="mt-4 space-y-2 text-sm text-gray-500">
+            <li class="flex items-center gap-2"><span class="text-guardian">&#8226;</span> SMS, 이메일 자동 알림</li>
+            <li class="flex items-center gap-2"><span class="text-guardian">&#8226;</span> 지킴이 최대 2명 (무료)</li>
+            <li class="flex items-center gap-2"><span class="text-guardian">&#8226;</span> 알림 시간 직접 설정</li>
+          </ul>
+        </div>
+        <!-- Feature 4: Legacy -->
+        <div class="group bg-gradient-to-br from-purple-50 to-white border border-purple-100 rounded-2xl p-8 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+          <div class="w-14 h-14 bg-legacy/10 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform duration-300">
+            &#128140;
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">레거시 메시지</h3>
+          <p class="text-gray-500 leading-relaxed">
+            소중한 사람에게 전하고 싶은 마음을 미리 기록해두세요. PIN 잠금으로 안전하게 보관하고, 원하는 때에 전달할 수 있습니다.
+          </p>
+          <ul class="mt-4 space-y-2 text-sm text-gray-500">
+            <li class="flex items-center gap-2"><span class="text-legacy">&#8226;</span> 지킴이별 개별 메시지 (프리미엄)</li>
+            <li class="flex items-center gap-2"><span class="text-legacy">&#8226;</span> 텍스트 편지 작성</li>
+            <li class="flex items-center gap-2"><span class="text-legacy">&#8226;</span> PIN 잠금으로 안전 보관</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">이렇게 간단합니다</h2>
+        <p class="text-gray-500 text-lg">3단계로 시작하세요</p>
+      </div>
+      <div class="space-y-8">
+        <div class="flex items-start gap-6">
+          <div class="w-14 h-14 bg-primary text-white rounded-2xl flex items-center justify-center text-2xl font-black shrink-0">1</div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">매일 체크인</h3>
+            <p class="text-gray-500 leading-relaxed">앱을 열고, 오늘의 기분을 선택하고, 체크인 버튼을 누르세요. 10초면 끝납니다. 정해진 시간까지 체크인이 없으면 지킴이에게 알림이 갑니다.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-6">
+          <div class="w-14 h-14 bg-accent text-white rounded-2xl flex items-center justify-center text-2xl font-black shrink-0">2</div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">AI와 대화로 기록</h3>
+            <p class="text-gray-500 leading-relaxed">체크인 후, 오늘 있었던 일을 편하게 이야기하세요. AI(너에게)가 "그랬군요", "그때 어떤 기분이셨어요?"라고 물어봅니다. 대화가 끝나면 일기가 자동으로 정리됩니다.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-6">
+          <div class="w-14 h-14 bg-legacy text-white rounded-2xl flex items-center justify-center text-2xl font-black shrink-0">3</div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">마음을 미리 전하세요</h3>
+            <p class="text-gray-500 leading-relaxed">소중한 사람에게 전하고 싶은 말을 레거시 메시지로 남겨두세요. PIN 잠금으로 안전하게 보관되고, 원하는 때에 전달할 수 있습니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">부담 없이 시작하세요</h2>
+        <p class="text-gray-500 text-lg">기본 기능은 무료, 더 필요하면 프리미엄</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <!-- Free Plan -->
+        <div class="bg-white border border-gray-200 rounded-2xl p-8 hover:shadow-xl transition-all duration-300">
+          <div class="mb-6">
+            <h3 class="text-lg font-bold text-gray-900 mb-1">무료</h3>
+            <p class="text-sm text-gray-500">기본 기능으로 시작하기</p>
+          </div>
+          <div class="mb-6">
+            <div class="flex items-baseline gap-1">
+              <span class="text-4xl font-black text-gray-900">0</span>
+              <span class="text-lg font-bold text-gray-500">원</span>
+              <span class="text-gray-400">/월</span>
+            </div>
+            <p class="text-sm text-gray-400 mt-1">평생 무료</p>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-3 text-gray-600">
+              <span class="text-primary">&#10003;</span> 일일 체크인
+            </li>
+            <li class="flex items-center gap-3 text-gray-600">
+              <span class="text-primary">&#10003;</span> AI 일기 <strong>5회/월</strong>
+            </li>
+            <li class="flex items-center gap-3 text-gray-600">
+              <span class="text-primary">&#10003;</span> 지킴이 <strong>2명</strong> 등록
+            </li>
+            <li class="flex items-center gap-3 text-gray-600">
+              <span class="text-primary">&#10003;</span> 레거시 메시지 1개 (공통)
+            </li>
+            <li class="flex items-center gap-3 text-gray-400">
+              <span>&#10007;</span> 지킴이별 개별 메시지
+            </li>
+          </ul>
+          <a href="#waitlist"
+             class="block text-center border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold py-3 rounded-xl transition-all duration-200">
+            무료로 시작하기
+          </a>
+        </div>
+        <!-- Premium Plan -->
+        <div class="relative bg-white border-2 border-primary rounded-2xl p-8 shadow-xl shadow-primary/10 hover:shadow-2xl transition-all duration-300">
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+            <span class="bg-primary text-white text-sm font-bold px-4 py-1.5 rounded-full shadow-lg">
+              추천
+            </span>
+          </div>
+          <div class="mb-6">
+            <h3 class="text-lg font-bold text-gray-900 mb-1">프리미엄</h3>
+            <p class="text-sm text-gray-500">모든 기능을 제한 없이</p>
+          </div>
+          <div class="mb-6">
+            <div class="flex items-baseline gap-1">
+              <span class="text-4xl font-black text-primary">4,900</span>
+              <span class="text-lg font-bold text-gray-500">원</span>
+              <span class="text-gray-400">/월</span>
+            </div>
+            <p class="text-sm text-gray-400 mt-1">커피 한 잔 값으로</p>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-3 text-gray-600">
+              <span class="text-primary">&#10003;</span> 무료 플랜의 <strong>모든 기능</strong>
+            </li>
+            <li class="flex items-center gap-3 text-gray-600">
+              <span class="text-primary">&#10003;</span> AI 일기 <strong>무제한</strong>
+            </li>
+            <li class="flex items-center gap-3 text-gray-600">
+              <span class="text-primary">&#10003;</span> 지킴이 <strong>5명</strong>까지 등록
+            </li>
+            <li class="flex items-center gap-3 text-gray-600">
+              <span class="text-primary">&#10003;</span> 지킴이별 개별 메시지
+            </li>
+            <li class="flex items-center gap-3 text-gray-600">
+              <span class="text-primary">&#10003;</span> 프리미엄 7일 무료 체험
+            </li>
+          </ul>
+          <a href="#waitlist"
+             class="block text-center bg-primary hover:bg-primary-dark text-white font-bold py-3 rounded-xl transition-all duration-200 hover:shadow-lg">
+            프리미엄 시작하기
+          </a>
+        </div>
+        <!-- VIP Plan -->
+        <div class="bg-white border border-gray-200 rounded-2xl p-8 hover:shadow-xl transition-all duration-300">
+          <div class="mb-6">
+            <h3 class="text-lg font-bold text-gray-900 mb-1">VIP</h3>
+            <p class="text-sm text-gray-500">대가족, 더 넓은 연결</p>
+          </div>
+          <div class="mb-6">
+            <div class="flex items-baseline gap-1">
+              <span class="text-4xl font-black text-gray-900">19,900</span>
+              <span class="text-lg font-bold text-gray-500">원</span>
+              <span class="text-gray-400">/월</span>
+            </div>
+            <p class="text-sm text-gray-400 mt-1">연간 결제 시 30% 할인</p>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-3 text-gray-600">
+              <span class="text-primary">&#10003;</span> 프리미엄의 <strong>모든 기능</strong>
+            </li>
+            <li class="flex items-center gap-3 text-gray-600">
+              <span class="text-primary">&#10003;</span> 지킴이 <strong>10명</strong>까지 등록
+            </li>
+            <li class="flex items-center gap-3 text-gray-600">
+              <span class="text-primary">&#10003;</span> AI 유언장 (Phase 2)
+            </li>
+            <li class="flex items-center gap-3 text-gray-600">
+              <span class="text-primary">&#10003;</span> 우선 고객 지원
+            </li>
+          </ul>
+          <a href="#waitlist"
+             class="block text-center border-2 border-gray-300 hover:border-primary text-gray-700 hover:text-primary font-bold py-3 rounded-xl transition-all duration-200">
+            VIP 신청하기
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Waitlist CTA -->
+  <section id="waitlist" class="py-20 bg-gradient-to-br from-secondary to-gray-800">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">
+        출시 알림을 받으세요
+      </h2>
+      <p class="text-gray-300 text-lg mb-8 leading-relaxed">
+        너에게는 곧 출시됩니다. 사전 신청하시면 출시와 동시에 알려드립니다.<br class="hidden sm:block">
+        사전 신청자에게는 프리미엄 1개월 무료 혜택을 드립니다.
+      </p>
+      <form id="waitlistForm" class="bg-white/10 backdrop-blur rounded-2xl p-8 mb-8 text-left">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label class="block text-gray-300 text-sm font-medium mb-1.5">이름 *</label>
+            <input type="text" name="name" required placeholder="홍길동"
+              class="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-gray-400 border border-white/20 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
+          </div>
+          <div>
+            <label class="block text-gray-300 text-sm font-medium mb-1.5">전화번호</label>
+            <input type="tel" name="phone" placeholder="010-1234-5678"
+              class="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-gray-400 border border-white/20 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
+          </div>
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-300 text-sm font-medium mb-1.5">이메일 *</label>
+          <input type="email" name="email" required placeholder="example@email.com"
+            class="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-gray-400 border border-white/20 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
+        </div>
+        <div class="mb-6">
+          <label class="block text-gray-300 text-sm font-medium mb-1.5">관심 분야</label>
+          <select name="interest"
+            class="w-full px-4 py-3 rounded-lg bg-white/20 text-white border border-white/20 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
+            <option value="parent" class="text-gray-900">부모님 안부 확인 (자녀)</option>
+            <option value="senior" class="text-gray-900">직접 사용 (시니어)</option>
+            <option value="legacy" class="text-gray-900">레거시 메시지 남기기</option>
+            <option value="all" class="text-gray-900">전체 기능 관심</option>
+          </select>
+        </div>
+        <button type="submit"
+          class="w-full bg-primary hover:bg-primary-dark text-white font-bold text-lg py-4 rounded-xl transition-all duration-200 hover:shadow-xl hover:-translate-y-1">
+          사전 신청하기 &#8594;
+        </button>
+        <p class="text-gray-400 text-sm mt-3 text-center">스팸 없음 &middot; 출시 알림만 보내드립니다</p>
+      </form>
+      <div id="formSuccess" class="hidden bg-white/10 backdrop-blur rounded-2xl p-8 mb-8 text-center">
+        <div class="text-5xl mb-4">&#127881;</div>
+        <h3 class="text-2xl font-bold text-white mb-2">신청이 완료되었습니다!</h3>
+        <p class="text-gray-300">출시되면 바로 알려드릴게요. 프리미엄 1개월 무료 혜택도 잊지 마세요.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-white text-center">
+        <div>
+          <div class="text-2xl mb-2">&#128274;</div>
+          <div class="font-semibold">개인정보 보호</div>
+          <div class="text-gray-400 text-sm mt-1">데이터 암호화 저장</div>
+        </div>
+        <div>
+          <div class="text-2xl mb-2">&#128241;</div>
+          <div class="font-semibold">iOS &amp; Android</div>
+          <div class="text-gray-400 text-sm mt-1">모든 스마트폰에서</div>
+        </div>
+        <div>
+          <div class="text-2xl mb-2">&#128231;</div>
+          <div class="font-semibold">문의</div>
+          <div class="text-gray-400 text-sm mt-1">support@launchlane.io</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 bg-gray-900 text-gray-400">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div>
+          <span class="text-white font-bold text-lg">너에게</span>
+          <span class="text-gray-500 ml-2 text-sm">ToYou</span>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-6 text-sm">
+          <a href="#features" class="hover:text-white transition-colors">기능 소개</a>
+          <a href="#pricing" class="hover:text-white transition-colors">요금</a>
+          <a href="/blog/" class="hover:text-white transition-colors">블로그</a>
+          <a href="/terms" class="hover:text-white transition-colors">이용약관</a>
+          <a href="/privacy" class="hover:text-white transition-colors">개인정보처리방침</a>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
+        <p>&copy; 2026 LaunchLane. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('waitlistForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.textContent = '전송 중...';
+
+      const fd = new FormData(this);
+      const data = Object.fromEntries(fd.entries());
+
+      try {
+        await fetch('https://toyou-webhook.launchlane.io/waitlist', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(data),
+        });
+      } catch(err) { /* silent */ }
+
+      gtag('event','sign_up',{event_category:'waitlist',event_label:data.interest||'unknown'});
+      this.classList.add('hidden');
+      document.getElementById('formSuccess').classList.remove('hidden');
+    });
+  </script>
+
+</body>
+</html>
