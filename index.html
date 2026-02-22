@@ -579,38 +579,72 @@
         당신의 하루가 쌓여, 언젠가 가장 따뜻한 선물이 됩니다.
       </p>
       <form id="preRegForm" class="bg-white/10 backdrop-blur rounded-2xl p-5 sm:p-8 mb-6 text-left">
-        <div class="flex justify-center gap-3 mb-4 sm:mb-5">
-          <label class="flex items-center gap-2 bg-white/20 hover:bg-white/30 px-4 py-2.5 rounded-xl cursor-pointer transition-all border border-transparent has-[:checked]:border-accent has-[:checked]:bg-white/25">
-            <input type="radio" name="type" value="self" checked class="accent-amber-400">
-            <span class="text-white text-sm font-medium">직접 사용할게요</span>
-          </label>
-          <label class="flex items-center gap-2 bg-white/20 hover:bg-white/30 px-4 py-2.5 rounded-xl cursor-pointer transition-all border border-transparent has-[:checked]:border-accent has-[:checked]:bg-white/25">
-            <input type="radio" name="type" value="gift" class="accent-amber-400">
-            <span class="text-white text-sm font-medium">부모님께 선물</span>
-          </label>
+        <!-- Progress indicator -->
+        <div class="flex items-center justify-center gap-2 mb-6">
+          <div id="step-dot-1" class="w-2.5 h-2.5 rounded-full bg-accent transition-all"></div>
+          <div class="w-8 h-0.5 bg-white/20 rounded"></div>
+          <div id="step-dot-2" class="w-2.5 h-2.5 rounded-full bg-white/30 transition-all"></div>
         </div>
-        <div class="space-y-3 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-4 mb-3 sm:mb-4">
-          <div>
-            <label class="block text-orange-100 text-sm font-medium mb-1.5">이름 *</label>
-            <input type="text" name="name" required placeholder="홍길동"
-              class="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-orange-200/70 border border-white/20 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all text-base">
+
+        <!-- Step 1: 유형 선택 -->
+        <div id="step-1" class="step-content">
+          <p class="text-center text-white text-base sm:text-lg font-medium mb-5">어떻게 사용하실 건가요?</p>
+          <div class="space-y-3 mb-6">
+            <label class="step-type-card flex items-center gap-4 bg-white/10 hover:bg-white/20 p-4 sm:p-5 rounded-xl cursor-pointer transition-all border-2 border-transparent" data-value="self">
+              <input type="radio" name="type" value="self" checked class="hidden">
+              <div class="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-accent/20 flex items-center justify-center text-2xl">📖</div>
+              <div>
+                <span class="block text-white font-bold text-base sm:text-lg">직접 사용할게요</span>
+                <span class="block text-orange-200/80 text-sm mt-0.5">나의 하루를 기록합니다</span>
+              </div>
+            </label>
+            <label class="step-type-card flex items-center gap-4 bg-white/10 hover:bg-white/20 p-4 sm:p-5 rounded-xl cursor-pointer transition-all border-2 border-transparent" data-value="gift">
+              <input type="radio" name="type" value="gift" class="hidden">
+              <div class="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-accent/20 flex items-center justify-center text-2xl">🎁</div>
+              <div>
+                <span class="block text-white font-bold text-base sm:text-lg">부모님께 선물할게요</span>
+                <span class="block text-orange-200/80 text-sm mt-0.5">부모님의 이야기를 남겨드립니다</span>
+              </div>
+            </label>
           </div>
-          <div>
-            <label class="block text-orange-100 text-sm font-medium mb-1.5">전화번호 *</label>
-            <input type="tel" name="phone" required placeholder="010-1234-5678"
-              class="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-orange-200/70 border border-white/20 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all text-base">
+          <button type="button" id="step1Next"
+            class="w-full bg-accent hover:bg-yellow-600 text-white font-bold text-base sm:text-lg py-3.5 sm:py-4 rounded-xl transition-all duration-200 hover:shadow-xl active:scale-[0.98]">
+            다음 →
+          </button>
+        </div>
+
+        <!-- Step 2: 정보 입력 -->
+        <div id="step-2" class="step-content hidden">
+          <p id="step2Title" class="text-center text-white text-base sm:text-lg font-medium mb-5">연락처를 알려주세요</p>
+          <div class="space-y-3 sm:space-y-4 mb-5">
+            <div>
+              <label class="block text-orange-100 text-sm font-medium mb-1.5">이름 *</label>
+              <input type="text" name="name" required placeholder="홍길동"
+                class="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-orange-200/70 border border-white/20 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all text-base">
+            </div>
+            <div>
+              <label class="block text-orange-100 text-sm font-medium mb-1.5">전화번호 *</label>
+              <input type="tel" name="phone" required placeholder="010-1234-5678"
+                class="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-orange-200/70 border border-white/20 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all text-base">
+            </div>
+            <div>
+              <label class="block text-orange-100 text-sm font-medium mb-1.5">이메일 <span class="text-orange-200/50">(선택)</span></label>
+              <input type="email" name="email" placeholder="example@email.com"
+                class="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-orange-200/70 border border-white/20 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all text-base">
+            </div>
           </div>
+          <div class="flex gap-3">
+            <button type="button" id="step2Back"
+              class="flex-shrink-0 px-5 py-3.5 sm:py-4 rounded-xl bg-white/10 hover:bg-white/20 text-white font-medium transition-all">
+              ← 이전
+            </button>
+            <button type="submit"
+              class="flex-1 bg-accent hover:bg-yellow-600 text-white font-bold text-base sm:text-lg py-3.5 sm:py-4 rounded-xl transition-all duration-200 hover:shadow-xl active:scale-[0.98]">
+              사전 신청하기
+            </button>
+          </div>
+          <p class="text-orange-200/70 text-xs sm:text-sm mt-3 text-center">출시 시 알림 · 얼리버드 혜택 제공</p>
         </div>
-        <div class="mb-4 sm:mb-6">
-          <label class="block text-orange-100 text-sm font-medium mb-1.5">이메일</label>
-          <input type="email" name="email" placeholder="example@email.com"
-            class="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-orange-200/70 border border-white/20 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all text-base">
-        </div>
-        <button type="submit"
-          class="w-full bg-accent hover:bg-yellow-600 text-white font-bold text-base sm:text-lg py-3.5 sm:py-4 rounded-xl transition-all duration-200 hover:shadow-xl active:scale-[0.98]">
-          사전 신청하기 →
-        </button>
-        <p class="text-orange-200/70 text-xs sm:text-sm mt-3 text-center">출시 시 알림 · 얼리버드 혜택 제공</p>
       </form>
       <div id="formSuccess" class="hidden bg-white/10 backdrop-blur rounded-2xl p-6 sm:p-8 mb-6 text-center">
         <div class="text-4xl sm:text-5xl mb-3">💖</div>
@@ -677,11 +711,51 @@
       }
     }
 
-    // 선물하기 버튼 클릭 시 '부모님께 선물' 라디오 자동 선택
+    // Step-by-step 폼 로직
+    var currentStep = 1;
+    var stepDot1 = document.getElementById('step-dot-1');
+    var stepDot2 = document.getElementById('step-dot-2');
+    var step1 = document.getElementById('step-1');
+    var step2 = document.getElementById('step-2');
+
+    function goToStep(n) {
+      currentStep = n;
+      step1.classList.toggle('hidden', n !== 1);
+      step2.classList.toggle('hidden', n !== 2);
+      stepDot1.className = 'w-2.5 h-2.5 rounded-full transition-all ' + (n === 1 ? 'bg-accent' : 'bg-white/30');
+      stepDot2.className = 'w-2.5 h-2.5 rounded-full transition-all ' + (n === 2 ? 'bg-accent' : 'bg-white/30');
+      // Update step 2 title for gift
+      if (n === 2) {
+        var isGift = document.querySelector('input[name="type"]:checked').value === 'gift';
+        document.getElementById('step2Title').textContent = isGift ? '부모님 정보를 알려주세요' : '연락처를 알려주세요';
+      }
+    }
+
+    // Type card selection (visual highlight)
+    document.querySelectorAll('.step-type-card').forEach(function(card) {
+      card.addEventListener('click', function() {
+        document.querySelectorAll('.step-type-card').forEach(function(c) {
+          c.classList.remove('border-accent', 'bg-white/20');
+          c.classList.add('border-transparent', 'bg-white/10');
+        });
+        this.classList.remove('border-transparent', 'bg-white/10');
+        this.classList.add('border-accent', 'bg-white/20');
+        this.querySelector('input[type="radio"]').checked = true;
+      });
+    });
+    // Initialize first card as selected
+    var firstCard = document.querySelector('.step-type-card[data-value="self"]');
+    if (firstCard) { firstCard.classList.remove('border-transparent', 'bg-white/10'); firstCard.classList.add('border-accent', 'bg-white/20'); }
+
+    document.getElementById('step1Next').addEventListener('click', function() { goToStep(2); });
+    document.getElementById('step2Back').addEventListener('click', function() { goToStep(1); });
+
+    // 선물하기 버튼 클릭 시 '부모님께 선물' 카드 자동 선택 + step 2로 이동
     document.querySelectorAll('.gift-link').forEach(function(a) {
       a.addEventListener('click', function() {
-        var giftRadio = document.querySelector('input[name="type"][value="gift"]');
-        if (giftRadio) giftRadio.checked = true;
+        var giftCard = document.querySelector('.step-type-card[data-value="gift"]');
+        if (giftCard) giftCard.click();
+        goToStep(2);
       });
     });
 
@@ -706,7 +780,7 @@
       var success = document.getElementById('formSuccess');
       if (isGift) {
         success.querySelector('h3').textContent = '선물 사전 신청이 완료되었습니다!';
-        success.querySelector('p').textContent = '앱이 준비되면 이메일로 초대 링크를 보내드리겠습니다.';
+        success.querySelector('p').textContent = '앱이 준비되면 초대 링크를 보내드리겠습니다.';
       }
       success.classList.remove('hidden');
     });
