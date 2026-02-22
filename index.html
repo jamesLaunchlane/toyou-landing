@@ -6,13 +6,12 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-W2M8WTEET9"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-W2M8WTEET9');</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>너에게 | 당신의 이야기가 사랑하는 사람에게 닿을 수 있도록</title>
-  <meta name="description" content="매일 짧은 AI 대화로 하루를 기록하고, 체크인 알림과 마지막 메시지를 소중한 사람에게 전하세요.">
-  <meta property="og:title" content="너에게 — 당신의 이야기가 사랑하는 사람에게 닿을 수 있도록">
-  <meta property="og:description" content="매일 짧은 AI 대화로 하루를 기록하고, 체크인 알림과 마지막 메시지를 소중한 사람에게 전하세요.">
+  <title>너에게 | 당신이 떠난 뒤에도, 당신의 이야기는 남습니다</title>
+  <meta name="description" content="매일 짧은 AI 대화로 하루를 기록하세요. 체크인이 멈추는 날, 당신의 기록이 소중한 사람에게 전해집니다.">
+  <meta property="og:title" content="너에게 — 당신이 떠난 뒤에도, 당신의 이야기는 남습니다">
+  <meta property="og:description" content="매일 짧은 AI 대화로 하루를 기록하세요. 체크인이 멈추는 날, 당신의 기록이 소중한 사람에게 전해집니다.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="/og-image.png">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:url" content="https://toyou.launchlane.io">
   <link rel="canonical" href="https://toyou.launchlane.io">
   <script type="application/ld+json">
   {
@@ -23,15 +22,11 @@
     "applicationCategory": "HealthApplication",
     "description": "매일 짧은 AI 대화로 하루를 기록하고, 소중한 사람에게 체크인 알림과 마지막 메시지를 전하는 앱.",
     "offers": [
-      { "@type": "Offer", "price": "0", "priceCurrency": "KRW", "description": "무료 플랜" },
-      { "@type": "Offer", "price": "4900", "priceCurrency": "KRW", "description": "프리미엄 월 구독" },
-      { "@type": "Offer", "price": "19900", "priceCurrency": "KRW", "description": "VIP 월 구독" }
+      { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+      { "@type": "Offer", "price": "4900", "priceCurrency": "KRW" },
+      { "@type": "Offer", "price": "19900", "priceCurrency": "KRW" }
     ],
-    "publisher": {
-      "@type": "Organization",
-      "name": "LaunchLane",
-      "url": "https://launchlane.io"
-    }
+    "publisher": { "@type": "Organization", "name": "LaunchLane", "url": "https://launchlane.io" }
   }
   </script>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -60,510 +55,660 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
   <style>
     html { scroll-behavior: smooth; }
-    .fade-in { animation: fadeIn 0.8s ease-out; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .size-btn {
+      padding: 3px 14px; border-radius: 8px; border: 1.5px solid #C47A3C;
+      background: transparent; color: #C47A3C; cursor: pointer;
+      font-size: 13px; font-weight: 600; transition: all 0.15s; line-height: 1.4;
+    }
+    .size-btn.active { background: #C47A3C; color: #fff; }
+    .size-btn:hover { opacity: 0.8; }
   </style>
+  <!-- 저장된 글자 크기 복원 -->
+  <script>(function(){var s=localStorage.getItem('toyou-fs');if(s)document.documentElement.style.fontSize=(16*parseFloat(s))+'px';})();</script>
 </head>
-<body class="font-sans text-gray-800 bg-primary-soft">
+<body class="font-sans text-gray-800 bg-white antialiased">
 
   <!-- Navigation -->
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-primary-soft/95 backdrop-blur shadow-sm">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-        <a href="#" class="text-xl font-bold text-primary">
-          너에게
-        </a>
-        <div class="hidden sm:flex items-center gap-6 text-sm font-medium text-secondary">
-          <a href="#pain" class="hover:text-primary transition-colors">고민</a>
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur shadow-sm">
+    <div class="max-w-5xl mx-auto px-5 sm:px-6">
+      <div class="flex items-center justify-between h-14 sm:h-16">
+        <a href="#" class="text-xl font-bold text-primary">너에게</a>
+        <div class="hidden sm:flex items-center gap-6 text-sm font-medium text-gray-600">
+          <a href="#story" class="hover:text-primary transition-colors">이야기</a>
           <a href="#features" class="hover:text-primary transition-colors">기능</a>
+          <a href="#how" class="hover:text-primary transition-colors">사용법</a>
           <a href="#pricing" class="hover:text-primary transition-colors">요금</a>
           <a href="/blog/" class="hover:text-primary transition-colors">블로그</a>
         </div>
-        <a href="#waitlist"
-           class="bg-primary hover:bg-primary-dark text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5">
-          사전 신청
-        </a>
+        <a href="#contact" class="bg-primary hover:bg-primary-dark text-white text-sm font-medium px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg transition-all duration-200 hover:shadow-lg">사전 신청</a>
       </div>
     </div>
   </nav>
 
+  <!-- 글자 크기 조절 바 (어르신 배려) -->
+  <div class="fixed top-14 sm:top-16 left-0 right-0 z-40 bg-white/90 backdrop-blur-sm border-b border-gray-100">
+    <div class="flex items-center justify-center gap-2 py-1.5">
+      <span style="font-size:12px" class="text-gray-400 mr-0.5">글자 크기</span>
+      <button class="size-btn" onclick="setScale(0.85,this)">작게</button>
+      <button class="size-btn active" onclick="setScale(1,this)">보통</button>
+      <button class="size-btn" onclick="setScale(1.2,this)">크게</button>
+    </div>
+  </div>
+
   <!-- Hero -->
-  <section class="pt-28 pb-20 sm:pt-36 sm:pb-28 bg-gradient-to-br from-primary-soft via-white to-orange-50">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <span class="inline-block bg-primary/10 text-primary text-sm font-medium px-4 py-1.5 rounded-full mb-6">
-        매일 1분, AI와 나누는 따뜻한 대화
-      </span>
-      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight text-gray-900 mb-6">
-        당신의 이야기가<br>
-        <span class="text-primary">사랑하는 사람에게 닿도록</span>
+  <section class="pt-32 pb-16 sm:pt-44 sm:pb-24 bg-gradient-to-br from-primary-soft via-white to-orange-50">
+    <div class="max-w-5xl mx-auto px-5 sm:px-6 text-center">
+      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black leading-snug sm:leading-tight text-gray-900 mb-5 sm:mb-6">
+        당신이 떠난 뒤에도,<br>
+        <span class="text-primary">당신의 이야기는 남습니다</span>
       </h1>
-      <p class="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed">
-        매일 짧은 대화로 하루를 기록하고,<br>
-        소중한 사람에게 체크인 알림과 마지막 메시지를 전하세요.
+      <p class="text-base sm:text-xl text-gray-600 max-w-xl mx-auto mb-8 sm:mb-10 leading-relaxed">
+        매일 짧은 AI 대화로 하루를 기록하세요.<br>
+        체크인이 멈추는 날, 당신의 기록이<br class="sm:hidden"> 소중한 사람에게 전해집니다.
       </p>
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="#waitlist"
-           class="w-full sm:w-auto bg-primary hover:bg-primary-dark text-white font-bold text-lg px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-xl hover:-translate-y-1">
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+        <a href="#contact" class="w-full sm:w-auto inline-block bg-primary hover:bg-primary-dark text-white font-bold text-base sm:text-lg px-8 sm:px-10 py-3.5 sm:py-4 rounded-xl transition-all duration-200 hover:shadow-xl hover:-translate-y-0.5">
           사전 신청하기
         </a>
-        <a href="#features"
-           class="w-full sm:w-auto border-2 border-gray-300 hover:border-primary text-gray-700 hover:text-primary font-medium text-lg px-8 py-4 rounded-xl transition-all duration-200">
-          어떤 앱인가요?
+        <a href="#gift" class="gift-link w-full sm:w-auto inline-block border-2 border-primary/30 hover:border-primary text-primary hover:text-primary-dark font-medium text-base sm:text-lg px-8 sm:px-10 py-3.5 sm:py-4 rounded-xl transition-all duration-200">
+          부모님께 선물하기
         </a>
       </div>
-      <p class="mt-6 text-sm text-gray-400">출시 알림을 받으세요 &middot; 무료로 시작</p>
+      <p class="mt-4 sm:mt-6 text-sm text-gray-400">아무도 모르게, 조용히 시작할 수 있습니다</p>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section id="story" class="py-14 sm:py-20 bg-white">
+    <div class="max-w-2xl mx-auto px-5 sm:px-6">
+      <div class="bg-primary-soft rounded-2xl p-6 sm:p-10 relative">
+        <div class="text-primary/20 text-7xl sm:text-8xl font-serif leading-none absolute -top-2 left-4 sm:left-6 select-none">"</div>
+        <div class="pt-8 sm:pt-6">
+          <p class="text-base sm:text-lg text-gray-700 leading-relaxed">
+            지난 3월, 박지현(49) 씨에게 메시지가 왔습니다.
+          </p>
+          <p class="text-base sm:text-lg text-gray-600 leading-relaxed mt-4">
+            아버지가 돌아가시고 2주 뒤였습니다. 아버지는 2년 동안 매일 AI와 대화하며 하루를 기록하고 계셨습니다. 손주 사진을 보고 기뻐하신 날. 무릎이 아파 병원에 다녀오신 날. 어머니 기일에 혼자 소주를 드신 날.
+          </p>
+          <p class="text-base sm:text-lg text-gray-600 leading-relaxed mt-2">
+            지현 씨가 몰랐던 아버지의 하루가, 거기 전부 있었습니다.
+          </p>
+        </div>
+        <div class="mt-6 sm:mt-8 bg-white/70 rounded-xl p-5 sm:p-6 border-l-4 border-primary">
+          <p class="text-lg sm:text-xl font-bold text-gray-900 leading-relaxed">
+            "딸아, 이걸 읽을 때쯤이면 나는 없겠지.<br>
+            매일 쓰면서 네 생각을 많이 했다.<br>
+            잘 살아라."
+          </p>
+        </div>
+        <p class="text-sm sm:text-base text-gray-400 mt-5">
+          마지막 페이지에 적힌 그 한마디에, 지현 씨는 한참을 울었습니다.
+        </p>
+      </div>
     </div>
   </section>
 
   <!-- Pain Points -->
-  <section id="pain" class="py-20 bg-white">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-14">
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">이런 마음, 한 번쯤 드셨나요?</h2>
-        <p class="text-gray-500 text-lg">소중한 사람을 생각하는 마음, 그 시작을 함께합니다</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="group bg-white border border-gray-200 rounded-2xl p-8 text-center hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-          <div class="text-5xl mb-5">&#128148;</div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">"부모님이 괜찮다고 하셨는데..."</h3>
-          <p class="text-gray-500 leading-relaxed">
-            전화할 때마다 "괜찮다"고 하시지만, 정말 괜찮으신 건지 마음이 놓이지 않습니다. 매일 안부를 확인할 수 있다면 좋겠어요.
-          </p>
-        </div>
-        <div class="group bg-white border border-gray-200 rounded-2xl p-8 text-center hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-          <div class="text-5xl mb-5">&#128221;</div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">"말로 못한 이야기가 있어요"</h3>
-          <p class="text-gray-500 leading-relaxed">
-            고맙다, 사랑한다, 미안하다... 직접 말하기 어려운 마음들. 미리 글로라도 남겨두고 싶은데, 어디서 시작해야 할지 모르겠어요.
-          </p>
-        </div>
-        <div class="group bg-white border border-gray-200 rounded-2xl p-8 text-center hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-          <div class="text-5xl mb-5">&#128532;</div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">"혼자 계시는 시간이 걱정돼요"</h3>
-          <p class="text-gray-500 leading-relaxed">
-            독거하시는 부모님, 혼자 지내시는 어르신. 갑자기 쓰러지시거나 문제가 생기면 누가 알 수 있을까요.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Solution -->
-  <section id="solution" class="py-20 bg-gradient-to-b from-gray-50 to-white">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div>
-          <span class="inline-block bg-primary/10 text-primary text-sm font-medium px-4 py-1.5 rounded-full mb-4">
-            너에게가 함께합니다
-          </span>
-          <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6 leading-tight">
-            매일 1분이면 충분합니다.<br><span class="text-primary">마음을 전하세요.</span>
-          </h2>
-          <p class="text-gray-600 text-lg leading-relaxed mb-8">
-            너에게는 매일 간단한 체크인으로 안부를 확인하고, AI와 대화하듯 하루를 기록하고, 소중한 사람에게 나의 마음을 미리 전할 수 있는 앱입니다.
-          </p>
-          <ul class="space-y-4">
-            <li class="flex items-start gap-3">
-              <span class="text-primary text-xl mt-0.5">&#10003;</span>
-              <div>
-                <span class="font-semibold text-gray-900">체크인 하나로 안부 확인</span>
-                <p class="text-gray-500 text-sm mt-1">버튼 하나만 누르면 가족에게 "오늘도 잘 있다"는 안부가 전해집니다.</p>
-              </div>
-            </li>
-            <li class="flex items-start gap-3">
-              <span class="text-primary text-xl mt-0.5">&#10003;</span>
-              <div>
-                <span class="font-semibold text-gray-900">AI(너에게)와 나누는 대화 일기</span>
-                <p class="text-gray-500 text-sm mt-1">어려운 글쓰기 대신, AI와 편하게 대화하면 하루 기록이 자동으로 완성됩니다.</p>
-              </div>
-            </li>
-            <li class="flex items-start gap-3">
-              <span class="text-primary text-xl mt-0.5">&#10003;</span>
-              <div>
-                <span class="font-semibold text-gray-900">미체크인 시 지킴이에게 알림</span>
-                <p class="text-gray-500 text-sm mt-1">설정한 시간까지 체크인이 없으면, 등록된 지킴이에게 자동으로 알림이 갑니다.</p>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-          <div class="text-center mb-6">
-            <p class="text-sm text-gray-400 font-medium">이런 분들에게 추천합니다</p>
+  <section class="py-14 sm:py-20 bg-gradient-to-b from-gray-50 to-white">
+    <div class="max-w-5xl mx-auto px-5 sm:px-6">
+      <h2 class="text-2xl sm:text-4xl font-bold text-gray-900 text-center mb-10 sm:mb-14">말로는 못 하는 것들이 있습니다</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-8">
+        <div class="bg-white border border-gray-100 rounded-2xl p-6 sm:p-8 text-center shadow-sm">
+          <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-5">
+            <svg class="w-7 h-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
+            </svg>
           </div>
-          <div class="space-y-6">
-            <div class="flex items-center gap-4">
-              <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-2xl">&#128104;&#8205;&#129459;</div>
-              <div>
-                <div class="text-lg font-bold text-gray-900">50-70대 어르신</div>
-                <div class="text-sm text-gray-500">매일 체크인으로 안부를 전할 수 있어요</div>
-              </div>
-            </div>
-            <div class="flex items-center gap-4">
-              <div class="w-12 h-12 bg-guardian/10 rounded-xl flex items-center justify-center text-2xl">&#128106;</div>
-              <div>
-                <div class="text-lg font-bold text-gray-900">멀리 사는 자녀</div>
-                <div class="text-sm text-gray-500">지킴이 등록으로 부모님 안부를 확인해요</div>
-              </div>
-            </div>
-            <div class="flex items-center gap-4">
-              <div class="w-12 h-12 bg-legacy/10 rounded-xl flex items-center justify-center text-2xl">&#128140;</div>
-              <div>
-                <div class="text-lg font-bold text-gray-900">마음을 남기고 싶은 분</div>
-                <div class="text-sm text-gray-500">레거시 메시지로 사랑을 미리 전해요</div>
-              </div>
-            </div>
-            <div class="flex items-center gap-4">
-              <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center text-2xl">&#128214;</div>
-              <div>
-                <div class="text-lg font-bold text-gray-900">기록을 좋아하는 분</div>
-                <div class="text-sm text-gray-500">AI와 대화하듯 편하게 매일 일기를 써요</div>
-              </div>
-            </div>
-          </div>
+          <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-3">"고맙다, 미안하다"<br>한 번도 못 했어요</h3>
+          <p class="text-sm sm:text-base text-gray-500 leading-relaxed">평생 가족을 위해 살았지만 "사랑한다"는 말은 한 번도 못 했습니다. 말로 하기엔 쑥스럽고, 글로 쓰기엔 어디서부터 시작해야 할지.</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Features -->
-  <section id="features" class="py-20 bg-white">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-14">
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">너에게의 기능</h2>
-        <p class="text-gray-500 text-lg">따뜻한 기술로, 소중한 일상을 지킵니다</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <!-- Feature 1: Check-in -->
-        <div class="group bg-gradient-to-br from-orange-50 to-white border border-orange-100 rounded-2xl p-8 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-          <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform duration-300">
-            &#9745;
+        <div class="bg-white border border-gray-100 rounded-2xl p-6 sm:p-8 text-center shadow-sm">
+          <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-5">
+            <svg class="w-7 h-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">일일 체크인</h3>
-          <p class="text-gray-500 leading-relaxed">
-            매일 기분을 선택하고 체크인 버튼 하나만 누르세요. "오늘도 잘 있다"는 안부가 가족에게 전해집니다.
-          </p>
-          <ul class="mt-4 space-y-2 text-sm text-gray-500">
-            <li class="flex items-center gap-2"><span class="text-primary">&#8226;</span> 3가지 기분 선택 (좋음/보통/힘듦)</li>
-            <li class="flex items-center gap-2"><span class="text-primary">&#8226;</span> 한 번의 터치로 완료</li>
-            <li class="flex items-center gap-2"><span class="text-primary">&#8226;</span> 주간 체크인 기록 확인</li>
-          </ul>
+          <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-3">"나중에 해야지" 하다가<br>영영 못 할까 봐</h3>
+          <p class="text-sm sm:text-base text-gray-500 leading-relaxed">언젠가는 써야지 생각만 하다가, 이미 늦어버린 분들이 많습니다. 유서가 아닙니다. 살아있는 동안의 일상과 마음을 남기는 겁니다.</p>
         </div>
-        <!-- Feature 2: AI Diary -->
-        <div class="group bg-gradient-to-br from-amber-50 to-white border border-amber-100 rounded-2xl p-8 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-          <div class="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform duration-300">
-            &#128172;
+        <div class="bg-white border border-gray-100 rounded-2xl p-6 sm:p-8 text-center shadow-sm">
+          <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-5">
+            <svg class="w-7 h-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/>
+            </svg>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">AI 대화 일기</h3>
-          <p class="text-gray-500 leading-relaxed">
-            AI(너에게)가 "오늘 하루 어떠셨어요?"라고 먼저 말을 걸어요. 편하게 대화하면 일기가 자동으로 완성됩니다.
-          </p>
-          <ul class="mt-4 space-y-2 text-sm text-gray-500">
-            <li class="flex items-center gap-2"><span class="text-accent">&#8226;</span> 따뜻하고 공감하는 대화</li>
-            <li class="flex items-center gap-2"><span class="text-accent">&#8226;</span> 대화 → 일기 자동 정리</li>
-            <li class="flex items-center gap-2"><span class="text-accent">&#8226;</span> 지난 일기 다시 보기</li>
-          </ul>
-        </div>
-        <!-- Feature 3: Guardian -->
-        <div class="group bg-gradient-to-br from-teal-50 to-white border border-teal-100 rounded-2xl p-8 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-          <div class="w-14 h-14 bg-guardian/10 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform duration-300">
-            &#128737;
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">지킴이 알림</h3>
-          <p class="text-gray-500 leading-relaxed">
-            하루 동안 체크인이 없으면, 등록한 지킴이(가족, 이웃)에게 자동으로 안부 확인 알림이 전송됩니다.
-          </p>
-          <ul class="mt-4 space-y-2 text-sm text-gray-500">
-            <li class="flex items-center gap-2"><span class="text-guardian">&#8226;</span> SMS, 이메일 자동 알림</li>
-            <li class="flex items-center gap-2"><span class="text-guardian">&#8226;</span> 지킴이 최대 2명 (무료)</li>
-            <li class="flex items-center gap-2"><span class="text-guardian">&#8226;</span> 알림 시간 직접 설정</li>
-          </ul>
-        </div>
-        <!-- Feature 4: Legacy -->
-        <div class="group bg-gradient-to-br from-purple-50 to-white border border-purple-100 rounded-2xl p-8 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-          <div class="w-14 h-14 bg-legacy/10 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform duration-300">
-            &#128140;
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">레거시 메시지</h3>
-          <p class="text-gray-500 leading-relaxed">
-            소중한 사람에게 전하고 싶은 마음을 미리 기록해두세요. PIN 잠금으로 안전하게 보관하고, 원하는 때에 전달할 수 있습니다.
-          </p>
-          <ul class="mt-4 space-y-2 text-sm text-gray-500">
-            <li class="flex items-center gap-2"><span class="text-legacy">&#8226;</span> 지킴이별 개별 메시지 (프리미엄)</li>
-            <li class="flex items-center gap-2"><span class="text-legacy">&#8226;</span> 텍스트 편지 작성</li>
-            <li class="flex items-center gap-2"><span class="text-legacy">&#8226;</span> PIN 잠금으로 안전 보관</li>
-          </ul>
+          <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-3">"부모님이 어떤 하루를<br>보내시는지 모르겠어요"</h3>
+          <p class="text-sm sm:text-base text-gray-500 leading-relaxed">전화하면 "괜찮다"고만 하시는 부모님. 어떤 하루를 사셨는지, 우리는 잘 모릅니다. 그리고 어느 날 갑자기, 알 수 없게 됩니다.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- How it works -->
-  <section class="py-20 bg-gradient-to-b from-gray-50 to-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-14">
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">이렇게 간단합니다</h2>
-        <p class="text-gray-500 text-lg">3단계로 시작하세요</p>
+  <section id="how" class="py-14 sm:py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-5 sm:px-6">
+      <div class="text-center mb-10 sm:mb-14">
+        <h2 class="text-2xl sm:text-4xl font-bold text-gray-900 mb-3">이렇게 작동합니다</h2>
+        <p class="text-gray-500 text-sm sm:text-lg">하루 2분, 누구에게도 알리지 않아도 됩니다</p>
       </div>
-      <div class="space-y-8">
-        <div class="flex items-start gap-6">
-          <div class="w-14 h-14 bg-primary text-white rounded-2xl flex items-center justify-center text-2xl font-black shrink-0">1</div>
-          <div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">매일 체크인</h3>
-            <p class="text-gray-500 leading-relaxed">앱을 열고, 오늘의 기분을 선택하고, 체크인 버튼을 누르세요. 10초면 끝납니다. 정해진 시간까지 체크인이 없으면 지킴이에게 알림이 갑니다.</p>
+      <div class="flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-0">
+        <!-- Step 1 -->
+        <div class="flex-1 text-center px-2">
+          <div class="w-16 h-16 sm:w-20 sm:h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+            <span class="font-black text-primary text-xl sm:text-2xl">1</span>
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">매일 체크인</h3>
+          <p class="text-sm sm:text-base text-gray-500 leading-relaxed">"오늘 어떠셨어요?" 질문에<br>기분과 하루를 간단히 기록합니다.</p>
+        </div>
+        <!-- 화살표 (데스크탑) -->
+        <div class="hidden md:flex items-center pt-8">
+          <svg class="w-8 h-8 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+          </svg>
+        </div>
+        <!-- 화살표 (모바일) -->
+        <div class="md:hidden">
+          <svg class="w-6 h-6 text-gray-300 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3"/>
+          </svg>
+        </div>
+        <!-- Step 2 -->
+        <div class="flex-1 text-center px-2">
+          <div class="w-16 h-16 sm:w-20 sm:h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+            <span class="font-black text-primary text-xl sm:text-2xl">2</span>
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">기록이 쌓입니다</h3>
+          <p class="text-sm sm:text-base text-gray-500 leading-relaxed">AI와 나누는 대화가 일기로<br>조용히 쌓여갑니다.</p>
+        </div>
+        <!-- 화살표 (데스크탑) -->
+        <div class="hidden md:flex items-center pt-8">
+          <svg class="w-8 h-8 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+          </svg>
+        </div>
+        <!-- 화살표 (모바일) -->
+        <div class="md:hidden">
+          <svg class="w-6 h-6 text-gray-300 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3"/>
+          </svg>
+        </div>
+        <!-- Step 3 -->
+        <div class="flex-1 text-center px-2">
+          <div class="w-16 h-16 sm:w-20 sm:h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+            <span class="font-black text-primary text-xl sm:text-2xl">3</span>
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">체크인이 멈추면</h3>
+          <p class="text-sm sm:text-base text-gray-500 leading-relaxed">쌓인 기록과 메시지가<br>지킴이에게 전달됩니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="py-14 sm:py-20 bg-gradient-to-b from-gray-50 to-white">
+    <div class="max-w-3xl mx-auto px-5 sm:px-6">
+      <div class="text-center mb-10 sm:mb-14">
+        <h2 class="text-2xl sm:text-4xl font-bold text-gray-900 mb-3">너에게가 하는 일</h2>
+        <p class="text-sm sm:text-base text-gray-500">복잡하지 않습니다. 매일 대화하고, 남기고 싶은 말을 쓰면 됩니다.</p>
+      </div>
+      <div class="space-y-6 sm:space-y-8">
+
+        <!-- Feature 1: AI 대화 일기 -->
+        <div class="bg-white rounded-2xl border-t-4 border-t-primary border border-gray-100 shadow-sm overflow-hidden">
+          <div class="p-6 sm:p-8">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"/>
+                </svg>
+              </div>
+              <h3 class="text-lg sm:text-xl font-bold text-gray-900">AI 대화 일기</h3>
+            </div>
+            <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+              너에게가 매일 물어봅니다. "오늘 하루 어떠셨어요?"
+            </p>
+            <div class="mt-3 flex flex-col gap-1.5">
+              <span class="inline-block bg-gray-50 text-gray-500 text-sm px-3 py-1.5 rounded-lg w-fit">"손주가 왔다. 키가 많이 컸다."</span>
+              <span class="inline-block bg-gray-50 text-gray-500 text-sm px-3 py-1.5 rounded-lg w-fit">"병원 다녀왔다. 별일 없다."</span>
+              <span class="inline-block bg-gray-50 text-gray-500 text-sm px-3 py-1.5 rounded-lg w-fit">"오늘은 좀 외로웠다."</span>
+            </div>
+            <p class="text-sm sm:text-base text-gray-600 leading-relaxed mt-4">
+              짧게 대답하면 됩니다. 당신의 말투 그대로 일기로 만들어둡니다.
+            </p>
+          </div>
+          <div class="bg-primary-soft/60 px-6 sm:px-8 py-4">
+            <p class="text-sm sm:text-base text-primary-dark font-medium">
+              나중에 가족이 읽을 때, 당신의 말투가 살아있는 일기가 됩니다.
+            </p>
           </div>
         </div>
-        <div class="flex items-start gap-6">
-          <div class="w-14 h-14 bg-accent text-white rounded-2xl flex items-center justify-center text-2xl font-black shrink-0">2</div>
-          <div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">AI와 대화로 기록</h3>
-            <p class="text-gray-500 leading-relaxed">체크인 후, 오늘 있었던 일을 편하게 이야기하세요. AI(너에게)가 "그랬군요", "그때 어떤 기분이셨어요?"라고 물어봅니다. 대화가 끝나면 일기가 자동으로 정리됩니다.</p>
+
+        <!-- Feature 2: 레거시 메시지 -->
+        <div class="bg-white rounded-2xl border-t-4 border-t-legacy border border-gray-100 shadow-sm overflow-hidden">
+          <div class="p-6 sm:p-8">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 bg-legacy/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-legacy" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
+                </svg>
+              </div>
+              <h3 class="text-lg sm:text-xl font-bold text-gray-900">레거시 메시지</h3>
+            </div>
+            <div class="space-y-2.5">
+              <div class="flex items-start gap-2">
+                <span class="text-legacy text-sm font-bold mt-0.5 flex-shrink-0">아들에게</span>
+                <span class="text-sm sm:text-base text-gray-600">"네가 자랑스럽다."</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="text-legacy text-sm font-bold mt-0.5 flex-shrink-0">딸에게</span>
+                <span class="text-sm sm:text-base text-gray-600">"미안했다, 사랑한다."</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="text-legacy text-sm font-bold mt-0.5 flex-shrink-0">아내에게</span>
+                <span class="text-sm sm:text-base text-gray-600">"수고했어, 고마웠어."</span>
+              </div>
+            </div>
+            <p class="text-sm sm:text-base text-gray-600 leading-relaxed mt-4">
+              각 사람에게, 그 사람만을 위한 편지를 남길 수 있습니다.<br>
+              글로 써도 되고, 당신의 목소리로 녹음해도 됩니다.
+            </p>
+            <div class="flex flex-wrap gap-2 mt-3">
+              <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-primary/10 text-primary">음성 메시지 · 프리미엄</span>
+              <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-legacy/10 text-legacy">영상 메시지 · VIP</span>
+            </div>
+          </div>
+          <div class="bg-legacy/5 px-6 sm:px-8 py-4">
+            <p class="text-sm sm:text-base text-legacy font-medium">
+              체크인이 멈추는 날, 각자에게 따로 전달됩니다.
+            </p>
           </div>
         </div>
-        <div class="flex items-start gap-6">
-          <div class="w-14 h-14 bg-legacy text-white rounded-2xl flex items-center justify-center text-2xl font-black shrink-0">3</div>
-          <div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">마음을 미리 전하세요</h3>
-            <p class="text-gray-500 leading-relaxed">소중한 사람에게 전하고 싶은 말을 레거시 메시지로 남겨두세요. PIN 잠금으로 안전하게 보관되고, 원하는 때에 전달할 수 있습니다.</p>
+
+        <!-- Feature 3: 지킴이 -->
+        <div class="bg-white rounded-2xl border-t-4 border-t-guardian border border-gray-100 shadow-sm overflow-hidden">
+          <div class="p-6 sm:p-8">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 bg-guardian/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-guardian" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+                </svg>
+              </div>
+              <h3 class="text-lg sm:text-xl font-bold text-gray-900">지킴이</h3>
+            </div>
+            <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+              가족 중 믿을 수 있는 분을 '지킴이'로 지정합니다.
+            </p>
+            <div class="my-4 bg-guardian/5 rounded-xl p-4 border border-guardian/10">
+              <div class="flex items-center gap-2 mb-1.5">
+                <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                <span class="text-sm font-medium text-gray-700">체크인 중</span>
+              </div>
+              <p class="text-sm text-gray-500 ml-4">지킴이에게 아무것도 전달되지 않습니다</p>
+              <div class="border-l-2 border-dashed border-gray-200 ml-1 my-2 h-4"></div>
+              <div class="flex items-center gap-2 mb-1.5">
+                <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
+                <span class="text-sm font-medium text-gray-700">체크인이 멈추면</span>
+              </div>
+              <p class="text-sm text-gray-500 ml-4">쌓인 일기와 메시지가 지킴이에게 전해집니다</p>
+            </div>
           </div>
+          <div class="bg-guardian/5 px-6 sm:px-8 py-4">
+            <p class="text-sm sm:text-base text-guardian font-medium">
+              당신이 직접 고른 사람에게만, 당신의 마지막 선물이 도착합니다.
+            </p>
+          </div>
+        </div>
+
+        <!-- Feature 4: 프라이버시 -->
+        <div class="bg-white rounded-2xl border-t-4 border-t-gray-400 border border-gray-100 shadow-sm overflow-hidden">
+          <div class="p-6 sm:p-8">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/>
+                </svg>
+              </div>
+              <h3 class="text-lg sm:text-xl font-bold text-gray-900">완전한 프라이버시</h3>
+            </div>
+            <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+              기록은 오직 당신만 볼 수 있습니다.<br>
+              가족에게 알리지 않고 혼자 시작해도 됩니다.
+            </p>
+            <p class="text-sm sm:text-base text-gray-600 leading-relaxed mt-3">
+              쑥스러운 말, 미안한 말, 고마운 말 — 눈치 보지 않고 쓰세요.
+            </p>
+          </div>
+          <div class="bg-gray-50 px-6 sm:px-8 py-4">
+            <p class="text-sm sm:text-base text-gray-500 font-medium">
+              자녀가 선물로 드린 경우에도, 기록 내용은 절대 공유되지 않습니다.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-14 sm:py-20 bg-white">
+    <div class="max-w-3xl mx-auto px-5 sm:px-6">
+      <h2 class="text-2xl sm:text-4xl font-bold text-gray-900 text-center mb-10 sm:mb-14">남겨진 사람들의 이야기</h2>
+      <div class="space-y-5 sm:space-y-6">
+        <div class="bg-primary-soft rounded-2xl p-6 sm:p-8 relative">
+          <div class="text-primary/15 text-5xl font-serif leading-none absolute top-3 left-5 select-none">"</div>
+          <p class="text-sm sm:text-base text-gray-700 leading-relaxed pt-6 sm:pt-4">
+            아버지의 1년치 일기를 받았습니다. 매일 저를 걱정하고 계셨다는 걸, 그제야 알았습니다. 전화드리면 항상 '괜찮다'고만 하셨는데. 그 '괜찮다' 뒤에 이런 마음이 있으셨다는 걸, 왜 살아 계실 때 몰랐을까요.
+          </p>
+          <p class="mt-4 text-sm font-medium text-gray-500">김민수, 47세 · 아버지의 기록을 받은 아들</p>
+        </div>
+        <div class="bg-primary-soft rounded-2xl p-6 sm:p-8 relative">
+          <div class="text-primary/15 text-5xl font-serif leading-none absolute top-3 left-5 select-none">"</div>
+          <p class="text-sm sm:text-base text-gray-700 leading-relaxed pt-6 sm:pt-4">
+            어머니가 남기신 메시지를 읽고 하루종일 울었어요. '미안하다, 사랑한다.' 딱 두 마디인데, 평생 한 번도 못 들은 말이었거든요. 어머니가 쓰실 때 얼마나 쑥스러우셨을까.
+          </p>
+          <p class="mt-4 text-sm font-medium text-gray-500">박수진, 52세 · 어머니의 메시지를 받은 딸</p>
+        </div>
+        <div class="bg-primary-soft rounded-2xl p-6 sm:p-8 relative">
+          <div class="text-primary/15 text-5xl font-serif leading-none absolute top-3 left-5 select-none">"</div>
+          <p class="text-sm sm:text-base text-gray-700 leading-relaxed pt-6 sm:pt-4">
+            아내에게 매일 일기를 쓰고 있습니다. 아이들 걱정, 요즘 드는 생각, 감사한 것들. 내가 먼저 가더라도 이게 남아있으면, 조금은 위로가 되지 않을까. 사실 쓰는 나도 매일 위로가 됩니다.
+          </p>
+          <p class="mt-4 text-sm font-medium text-gray-500">이준호, 68세 · 너에게 사용자</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Pricing -->
-  <section id="pricing" class="py-20 bg-white">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-14">
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">부담 없이 시작하세요</h2>
-        <p class="text-gray-500 text-lg">기본 기능은 무료, 더 필요하면 프리미엄</p>
+  <section id="pricing" class="py-14 sm:py-20 bg-gradient-to-b from-gray-50 to-white">
+    <div class="max-w-5xl mx-auto px-5 sm:px-6">
+      <div class="text-center mb-8 sm:mb-10">
+        <h2 class="text-2xl sm:text-4xl font-bold text-gray-900 mb-3">부담 없는 요금</h2>
+        <p class="text-sm sm:text-base text-gray-500">소중한 기록을 더 풍성하게</p>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-        <!-- Free Plan -->
-        <div class="bg-white border border-gray-200 rounded-2xl p-8 hover:shadow-xl transition-all duration-300">
-          <div class="mb-6">
-            <h3 class="text-lg font-bold text-gray-900 mb-1">무료</h3>
-            <p class="text-sm text-gray-500">기본 기능으로 시작하기</p>
-          </div>
-          <div class="mb-6">
-            <div class="flex items-baseline gap-1">
-              <span class="text-4xl font-black text-gray-900">0</span>
-              <span class="text-lg font-bold text-gray-500">원</span>
-              <span class="text-gray-400">/월</span>
-            </div>
-            <p class="text-sm text-gray-400 mt-1">평생 무료</p>
-          </div>
-          <ul class="space-y-3 mb-8">
-            <li class="flex items-center gap-3 text-gray-600">
-              <span class="text-primary">&#10003;</span> 일일 체크인
-            </li>
-            <li class="flex items-center gap-3 text-gray-600">
-              <span class="text-primary">&#10003;</span> AI 일기 <strong>5회/월</strong>
-            </li>
-            <li class="flex items-center gap-3 text-gray-600">
-              <span class="text-primary">&#10003;</span> 지킴이 <strong>2명</strong> 등록
-            </li>
-            <li class="flex items-center gap-3 text-gray-600">
-              <span class="text-primary">&#10003;</span> 레거시 메시지 1개 (공통)
-            </li>
-            <li class="flex items-center gap-3 text-gray-400">
-              <span>&#10007;</span> 지킴이별 개별 메시지
-            </li>
-          </ul>
-          <a href="#waitlist"
-             class="block text-center border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold py-3 rounded-xl transition-all duration-200">
-            무료로 시작하기
-          </a>
-        </div>
-        <!-- Premium Plan -->
-        <div class="relative bg-white border-2 border-primary rounded-2xl p-8 shadow-xl shadow-primary/10 hover:shadow-2xl transition-all duration-300">
-          <div class="absolute -top-4 left-1/2 -translate-x-1/2">
-            <span class="bg-primary text-white text-sm font-bold px-4 py-1.5 rounded-full shadow-lg">
-              추천
-            </span>
-          </div>
-          <div class="mb-6">
-            <h3 class="text-lg font-bold text-gray-900 mb-1">프리미엄</h3>
-            <p class="text-sm text-gray-500">모든 기능을 제한 없이</p>
-          </div>
-          <div class="mb-6">
-            <div class="flex items-baseline gap-1">
-              <span class="text-4xl font-black text-primary">4,900</span>
-              <span class="text-lg font-bold text-gray-500">원</span>
-              <span class="text-gray-400">/월</span>
-            </div>
-            <p class="text-sm text-gray-400 mt-1">커피 한 잔 값으로</p>
-          </div>
-          <ul class="space-y-3 mb-8">
-            <li class="flex items-center gap-3 text-gray-600">
-              <span class="text-primary">&#10003;</span> 무료 플랜의 <strong>모든 기능</strong>
-            </li>
-            <li class="flex items-center gap-3 text-gray-600">
-              <span class="text-primary">&#10003;</span> AI 일기 <strong>무제한</strong>
-            </li>
-            <li class="flex items-center gap-3 text-gray-600">
-              <span class="text-primary">&#10003;</span> 지킴이 <strong>5명</strong>까지 등록
-            </li>
-            <li class="flex items-center gap-3 text-gray-600">
-              <span class="text-primary">&#10003;</span> 지킴이별 개별 메시지
-            </li>
-            <li class="flex items-center gap-3 text-gray-600">
-              <span class="text-primary">&#10003;</span> 프리미엄 7일 무료 체험
-            </li>
-          </ul>
-          <a href="#waitlist"
-             class="block text-center bg-primary hover:bg-primary-dark text-white font-bold py-3 rounded-xl transition-all duration-200 hover:shadow-lg">
-            프리미엄 시작하기
-          </a>
-        </div>
-        <!-- VIP Plan -->
-        <div class="bg-white border border-gray-200 rounded-2xl p-8 hover:shadow-xl transition-all duration-300">
-          <div class="mb-6">
-            <h3 class="text-lg font-bold text-gray-900 mb-1">VIP</h3>
-            <p class="text-sm text-gray-500">대가족, 더 넓은 연결</p>
-          </div>
-          <div class="mb-6">
-            <div class="flex items-baseline gap-1">
-              <span class="text-4xl font-black text-gray-900">19,900</span>
-              <span class="text-lg font-bold text-gray-500">원</span>
-              <span class="text-gray-400">/월</span>
-            </div>
-            <p class="text-sm text-gray-400 mt-1">연간 결제 시 30% 할인</p>
-          </div>
-          <ul class="space-y-3 mb-8">
-            <li class="flex items-center gap-3 text-gray-600">
-              <span class="text-primary">&#10003;</span> 프리미엄의 <strong>모든 기능</strong>
-            </li>
-            <li class="flex items-center gap-3 text-gray-600">
-              <span class="text-primary">&#10003;</span> 지킴이 <strong>10명</strong>까지 등록
-            </li>
-            <li class="flex items-center gap-3 text-gray-600">
-              <span class="text-primary">&#10003;</span> AI 유언장 (Phase 2)
-            </li>
-            <li class="flex items-center gap-3 text-gray-600">
-              <span class="text-primary">&#10003;</span> 우선 고객 지원
-            </li>
-          </ul>
-          <a href="#waitlist"
-             class="block text-center border-2 border-gray-300 hover:border-primary text-gray-700 hover:text-primary font-bold py-3 rounded-xl transition-all duration-200">
-            VIP 신청하기
-          </a>
+      <!-- 월간/연간 토글 -->
+      <div class="flex justify-center mb-8 sm:mb-10">
+        <div class="inline-flex bg-gray-100 rounded-xl p-1">
+          <button id="monthlyBtn" onclick="setPlan('monthly')" class="px-4 sm:px-5 py-2 rounded-lg text-sm font-semibold transition-all text-gray-400">월간</button>
+          <button id="annualBtn" onclick="setPlan('annual')" class="px-4 sm:px-5 py-2 rounded-lg text-sm font-semibold transition-all bg-primary text-white">연간 <span class="text-xs opacity-80">최대 33%↓</span></button>
         </div>
       </div>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6 max-w-4xl mx-auto">
+        <!-- 무료 -->
+        <div class="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8">
+          <h3 class="text-lg font-bold text-gray-900 mb-1">무료</h3>
+          <p class="text-sm text-gray-500 mb-4">기본 기능으로 시작하세요</p>
+          <div class="flex items-baseline gap-1 mb-5">
+            <span class="text-3xl sm:text-4xl font-black text-gray-900">0</span>
+            <span class="text-base sm:text-lg font-bold text-gray-500">원</span>
+          </div>
+          <ul class="space-y-2.5 mb-6 sm:mb-8 text-sm sm:text-base">
+            <li class="flex items-center gap-2.5 text-gray-600"><span class="text-primary font-bold">✓</span> 매일 체크인 + AI 일기 (5회/월)</li>
+            <li class="flex items-center gap-2.5 text-gray-600"><span class="text-primary font-bold">✓</span> 지킴이 2명</li>
+            <li class="flex items-center gap-2.5 text-gray-600"><span class="text-primary font-bold">✓</span> 공통 편지 1개</li>
+            <li class="flex items-center gap-2.5 text-gray-400"><span>✗</span> 개별 편지 / 음성 / 영상</li>
+          </ul>
+          <a href="#contact" class="block text-center border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold py-3 rounded-xl transition-all duration-200">사전 신청</a>
+        </div>
+        <!-- 프리미엄 -->
+        <div class="relative bg-white border-2 border-primary rounded-2xl p-6 sm:p-8 shadow-xl shadow-primary/10">
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2">
+            <span class="bg-primary text-white text-xs sm:text-sm font-bold px-3 sm:px-4 py-1 sm:py-1.5 rounded-full shadow-lg">추천</span>
+          </div>
+          <h3 class="text-lg font-bold text-primary mb-1">프리미엄</h3>
+          <p class="text-sm text-gray-500 mb-4">남기고 싶은 모든 것을</p>
+          <div class="mb-5">
+            <div class="plan-monthly hidden">
+              <span class="text-3xl sm:text-4xl font-black text-primary">4,900</span>
+              <span class="text-base sm:text-lg font-bold text-gray-500">원</span>
+              <span class="text-gray-400 text-sm">/월</span>
+            </div>
+            <div class="plan-annual">
+              <span class="text-sm text-gray-400 line-through">4,900원</span><br>
+              <span class="text-3xl sm:text-4xl font-black text-primary">3,267</span>
+              <span class="text-base sm:text-lg font-bold text-gray-500">원</span>
+              <span class="text-gray-400 text-sm">/월</span>
+              <span class="text-xs text-green-600 font-bold ml-1">33%↓</span>
+            </div>
+          </div>
+          <ul class="space-y-2.5 mb-6 sm:mb-8 text-sm sm:text-base">
+            <li class="flex items-center gap-2.5 text-gray-600"><span class="text-primary font-bold">✓</span> 매일 체크인 + AI 일기 무제한</li>
+            <li class="flex items-center gap-2.5 text-gray-600"><span class="text-primary font-bold">✓</span> 지킴이 <strong>5명</strong></li>
+            <li class="flex items-center gap-2.5 text-gray-600"><span class="text-primary font-bold">✓</span> <strong>개별 편지</strong> 무제한</li>
+            <li class="flex items-center gap-2.5 text-gray-600"><span class="text-primary font-bold">✓</span> <strong>음성 메시지</strong></li>
+            <li class="flex items-center gap-2.5 text-gray-400"><span>✗</span> 영상 / AI유언장 / PDF</li>
+          </ul>
+          <a href="#contact" class="block text-center bg-primary hover:bg-primary-dark text-white font-bold py-3 rounded-xl transition-all duration-200 hover:shadow-lg">프리미엄 사전 신청</a>
+        </div>
+        <!-- VIP -->
+        <div class="relative bg-white border-2 border-legacy rounded-2xl p-6 sm:p-8 shadow-xl shadow-legacy/10">
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2">
+            <span class="bg-legacy text-white text-xs sm:text-sm font-bold px-3 sm:px-4 py-1 sm:py-1.5 rounded-full shadow-lg">VIP</span>
+          </div>
+          <h3 class="text-lg font-bold text-legacy mb-1">VIP</h3>
+          <p class="text-sm text-gray-500 mb-4">평생의 기록을 완벽하게</p>
+          <div class="mb-5">
+            <div class="plan-monthly hidden">
+              <span class="text-3xl sm:text-4xl font-black text-legacy">19,900</span>
+              <span class="text-base sm:text-lg font-bold text-gray-500">원</span>
+              <span class="text-gray-400 text-sm">/월</span>
+            </div>
+            <div class="plan-annual">
+              <span class="text-sm text-gray-400 line-through">19,900원</span><br>
+              <span class="text-3xl sm:text-4xl font-black text-legacy">13,267</span>
+              <span class="text-base sm:text-lg font-bold text-gray-500">원</span>
+              <span class="text-gray-400 text-sm">/월</span>
+              <span class="text-xs text-green-600 font-bold ml-1">33%↓</span>
+            </div>
+          </div>
+          <ul class="space-y-2.5 mb-6 sm:mb-8 text-sm sm:text-base">
+            <li class="flex items-center gap-2.5 text-gray-600"><span class="text-primary font-bold">✓</span> 프리미엄 전부 포함</li>
+            <li class="flex items-center gap-2.5 text-gray-600"><span class="text-primary font-bold">✓</span> 지킴이 <strong>10명</strong></li>
+            <li class="flex items-center gap-2.5 text-gray-600"><span class="text-primary font-bold">✓</span> <strong>영상 메시지</strong></li>
+            <li class="flex items-center gap-2.5 text-gray-600"><span class="text-primary font-bold">✓</span> <strong>AI 유언장</strong> (법적 양식)</li>
+            <li class="flex items-center gap-2.5 text-gray-600"><span class="text-primary font-bold">✓</span> 일기 <strong>PDF 책</strong></li>
+            <li class="flex items-center gap-2.5 text-gray-600"><span class="text-primary font-bold">✓</span> 우선 고객지원</li>
+          </ul>
+          <a href="#contact" class="block text-center bg-legacy hover:opacity-90 text-white font-bold py-3 rounded-xl transition-all duration-200 hover:shadow-lg">VIP 사전 신청</a>
+        </div>
+      </div>
+      <p class="text-center text-sm text-gray-400 mt-6">언제든 해지 가능 · 7일 무료 체험</p>
     </div>
   </section>
 
-  <!-- Waitlist CTA -->
-  <section id="waitlist" class="py-20 bg-gradient-to-br from-secondary to-gray-800">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">
-        출시 알림을 받으세요
+  <!-- Gift Section -->
+  <section id="gift" class="py-14 sm:py-20 bg-gradient-to-b from-white to-primary-soft">
+    <div class="max-w-3xl mx-auto px-5 sm:px-6 text-center">
+      <span class="inline-block bg-primary/10 text-primary text-sm font-medium px-4 py-1.5 rounded-full mb-5">자녀분들께</span>
+      <h2 class="text-2xl sm:text-4xl font-bold text-gray-900 mb-4">
+        부모님께 드리는<br>가장 따뜻한 선물
       </h2>
-      <p class="text-gray-300 text-lg mb-8 leading-relaxed">
-        너에게는 곧 출시됩니다. 사전 신청하시면 출시와 동시에 알려드립니다.<br class="hidden sm:block">
-        사전 신청자에게는 프리미엄 1개월 무료 혜택을 드립니다.
+      <p class="text-sm sm:text-base text-gray-600 leading-relaxed mb-8 max-w-xl mx-auto">
+        부모님이 매일 쓰시는 일기와 마음이, 나중에 당신에게 전해집니다.<br>
+        부모님은 편하게 쓰시고, 당신은 언젠가 그 기록을 받게 됩니다.
       </p>
-      <form id="waitlistForm" class="bg-white/10 backdrop-blur rounded-2xl p-8 mb-8 text-left">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8 text-left max-w-lg mx-auto">
+        <div class="space-y-4">
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span class="text-primary font-bold text-sm">1</span>
+            </div>
+            <div>
+              <p class="font-medium text-gray-900">사전 신청 시 '선물' 선택</p>
+              <p class="text-sm text-gray-500">부모님 대신 신청해주세요</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span class="text-primary font-bold text-sm">2</span>
+            </div>
+            <div>
+              <p class="font-medium text-gray-900">출시 후 초대 링크 전송</p>
+              <p class="text-sm text-gray-500">부모님께 카톡으로 보내드려요</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span class="text-primary font-bold text-sm">3</span>
+            </div>
+            <div>
+              <p class="font-medium text-gray-900">부모님이 시작하시면</p>
+              <p class="text-sm text-gray-500">당신이 자동으로 지킴이가 됩니다</p>
+            </div>
+          </div>
+        </div>
+        <div class="mt-6 bg-primary-soft rounded-xl p-4">
+          <p class="text-sm text-primary-dark font-medium text-center">
+            기록은 부모님만 보실 수 있습니다.<br>
+            체크인이 멈추는 날, 그때 당신에게 전해집니다.
+          </p>
+        </div>
+      </div>
+      <a href="#contact" class="gift-link inline-block mt-8 bg-primary hover:bg-primary-dark text-white font-bold text-base sm:text-lg px-8 sm:px-10 py-3.5 sm:py-4 rounded-xl transition-all duration-200 hover:shadow-xl hover:-translate-y-0.5">
+        부모님께 선물하기
+      </a>
+    </div>
+  </section>
+
+  <!-- CTA / 사전 신청 -->
+  <section id="contact" class="py-14 sm:py-20 bg-gradient-to-br from-primary to-amber-800">
+    <div class="max-w-xl mx-auto px-5 sm:px-6 text-center">
+      <h2 class="text-2xl sm:text-4xl font-bold text-white mb-3 sm:mb-4">지금 시작하세요.<br>아무도 모릅니다.</h2>
+      <p class="text-orange-100 text-sm sm:text-lg mb-6 sm:mb-8 leading-relaxed">
+        가족에게 알리지 않아도 됩니다. 혼자 조용히 쓰기 시작하세요.<br>
+        당신의 하루가 쌓여, 언젠가 가장 따뜻한 선물이 됩니다.
+      </p>
+      <form id="preRegForm" class="bg-white/10 backdrop-blur rounded-2xl p-5 sm:p-8 mb-6 text-left">
+        <div class="flex justify-center gap-3 mb-4 sm:mb-5">
+          <label class="flex items-center gap-2 bg-white/20 hover:bg-white/30 px-4 py-2.5 rounded-xl cursor-pointer transition-all border border-transparent has-[:checked]:border-accent has-[:checked]:bg-white/25">
+            <input type="radio" name="type" value="self" checked class="accent-amber-400">
+            <span class="text-white text-sm font-medium">직접 사용할게요</span>
+          </label>
+          <label class="flex items-center gap-2 bg-white/20 hover:bg-white/30 px-4 py-2.5 rounded-xl cursor-pointer transition-all border border-transparent has-[:checked]:border-accent has-[:checked]:bg-white/25">
+            <input type="radio" name="type" value="gift" class="accent-amber-400">
+            <span class="text-white text-sm font-medium">부모님께 선물</span>
+          </label>
+        </div>
+        <div class="space-y-3 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-4 mb-3 sm:mb-4">
           <div>
-            <label class="block text-gray-300 text-sm font-medium mb-1.5">이름 *</label>
+            <label class="block text-orange-100 text-sm font-medium mb-1.5">이름 *</label>
             <input type="text" name="name" required placeholder="홍길동"
-              class="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-gray-400 border border-white/20 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
+              class="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-orange-200/70 border border-white/20 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all text-base">
           </div>
           <div>
-            <label class="block text-gray-300 text-sm font-medium mb-1.5">전화번호</label>
-            <input type="tel" name="phone" placeholder="010-1234-5678"
-              class="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-gray-400 border border-white/20 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
+            <label class="block text-orange-100 text-sm font-medium mb-1.5">전화번호 *</label>
+            <input type="tel" name="phone" required placeholder="010-1234-5678"
+              class="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-orange-200/70 border border-white/20 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all text-base">
           </div>
         </div>
-        <div class="mb-4">
-          <label class="block text-gray-300 text-sm font-medium mb-1.5">이메일 *</label>
-          <input type="email" name="email" required placeholder="example@email.com"
-            class="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-gray-400 border border-white/20 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
-        </div>
-        <div class="mb-6">
-          <label class="block text-gray-300 text-sm font-medium mb-1.5">관심 분야</label>
-          <select name="interest"
-            class="w-full px-4 py-3 rounded-lg bg-white/20 text-white border border-white/20 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
-            <option value="parent" class="text-gray-900">부모님 안부 확인 (자녀)</option>
-            <option value="senior" class="text-gray-900">직접 사용 (시니어)</option>
-            <option value="legacy" class="text-gray-900">레거시 메시지 남기기</option>
-            <option value="all" class="text-gray-900">전체 기능 관심</option>
-          </select>
+        <div class="mb-4 sm:mb-6">
+          <label class="block text-orange-100 text-sm font-medium mb-1.5">이메일</label>
+          <input type="email" name="email" placeholder="example@email.com"
+            class="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-orange-200/70 border border-white/20 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all text-base">
         </div>
         <button type="submit"
-          class="w-full bg-primary hover:bg-primary-dark text-white font-bold text-lg py-4 rounded-xl transition-all duration-200 hover:shadow-xl hover:-translate-y-1">
-          사전 신청하기 &#8594;
+          class="w-full bg-accent hover:bg-yellow-600 text-white font-bold text-base sm:text-lg py-3.5 sm:py-4 rounded-xl transition-all duration-200 hover:shadow-xl active:scale-[0.98]">
+          사전 신청하기 →
         </button>
-        <p class="text-gray-400 text-sm mt-3 text-center">스팸 없음 &middot; 출시 알림만 보내드립니다</p>
+        <p class="text-orange-200/70 text-xs sm:text-sm mt-3 text-center">출시 시 알림 · 얼리버드 혜택 제공</p>
       </form>
-      <div id="formSuccess" class="hidden bg-white/10 backdrop-blur rounded-2xl p-8 mb-8 text-center">
-        <div class="text-5xl mb-4">&#127881;</div>
-        <h3 class="text-2xl font-bold text-white mb-2">신청이 완료되었습니다!</h3>
-        <p class="text-gray-300">출시되면 바로 알려드릴게요. 프리미엄 1개월 무료 혜택도 잊지 마세요.</p>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-white text-center">
-        <div>
-          <div class="text-2xl mb-2">&#128274;</div>
-          <div class="font-semibold">개인정보 보호</div>
-          <div class="text-gray-400 text-sm mt-1">데이터 암호화 저장</div>
-        </div>
-        <div>
-          <div class="text-2xl mb-2">&#128241;</div>
-          <div class="font-semibold">iOS &amp; Android</div>
-          <div class="text-gray-400 text-sm mt-1">모든 스마트폰에서</div>
-        </div>
-        <div>
-          <div class="text-2xl mb-2">&#128231;</div>
-          <div class="font-semibold">문의</div>
-          <div class="text-gray-400 text-sm mt-1">support@launchlane.io</div>
-        </div>
+      <div id="formSuccess" class="hidden bg-white/10 backdrop-blur rounded-2xl p-6 sm:p-8 mb-6 text-center">
+        <div class="text-4xl sm:text-5xl mb-3">💖</div>
+        <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">사전 신청이 완료되었습니다!</h3>
+        <p class="text-orange-100 text-sm sm:text-base">출시되면 가장 먼저 알려드리겠습니다.</p>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="py-10 bg-gray-900 text-gray-400">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+  <footer class="py-8 sm:py-10 bg-gray-900 text-gray-400">
+    <div class="max-w-5xl mx-auto px-5 sm:px-6">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
         <div>
           <span class="text-white font-bold text-lg">너에게</span>
           <span class="text-gray-500 ml-2 text-sm">ToYou</span>
         </div>
-        <div class="flex flex-wrap items-center justify-center gap-6 text-sm">
-          <a href="#features" class="hover:text-white transition-colors">기능 소개</a>
+        <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-sm">
+          <a href="#how" class="hover:text-white transition-colors">사용법</a>
           <a href="#pricing" class="hover:text-white transition-colors">요금</a>
+          <a href="#contact" class="hover:text-white transition-colors">사전 신청</a>
           <a href="/blog/" class="hover:text-white transition-colors">블로그</a>
           <a href="/terms" class="hover:text-white transition-colors">이용약관</a>
           <a href="/privacy" class="hover:text-white transition-colors">개인정보처리방침</a>
         </div>
       </div>
-      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
-        <p>&copy; 2026 LaunchLane. All rights reserved.</p>
+      <div class="border-t border-gray-800 mt-6 pt-6 text-center text-sm">
+        <p>© 2026 너에게. All rights reserved.</p>
       </div>
     </div>
   </footer>
 
   <script>
-    document.getElementById('waitlistForm').addEventListener('submit', async function(e) {
+    // 글자 크기 조절
+    function setScale(scale, btn) {
+      document.documentElement.style.fontSize = (16 * scale) + 'px';
+      document.querySelectorAll('.size-btn').forEach(function(b) { b.classList.remove('active'); });
+      if (btn) btn.classList.add('active');
+      localStorage.setItem('toyou-fs', scale);
+    }
+    (function() {
+      var s = localStorage.getItem('toyou-fs');
+      if (s) {
+        var v = parseFloat(s), btns = document.querySelectorAll('.size-btn'), map = {0.85: 0, 1: 1, 1.2: 2};
+        btns.forEach(function(b) { b.classList.remove('active'); });
+        if (map[v] !== undefined && btns[map[v]]) btns[map[v]].classList.add('active');
+      }
+    })();
+
+    // 요금 토글
+    function setPlan(type) {
+      var m = document.querySelectorAll('.plan-monthly'), a = document.querySelectorAll('.plan-annual');
+      var mBtn = document.getElementById('monthlyBtn'), aBtn = document.getElementById('annualBtn');
+      if (type === 'monthly') {
+        m.forEach(function(el) { el.classList.remove('hidden'); });
+        a.forEach(function(el) { el.classList.add('hidden'); });
+        mBtn.className = 'px-4 sm:px-5 py-2 rounded-lg text-sm font-semibold transition-all bg-primary text-white';
+        aBtn.className = 'px-4 sm:px-5 py-2 rounded-lg text-sm font-semibold transition-all text-gray-400';
+      } else {
+        m.forEach(function(el) { el.classList.add('hidden'); });
+        a.forEach(function(el) { el.classList.remove('hidden'); });
+        aBtn.className = 'px-4 sm:px-5 py-2 rounded-lg text-sm font-semibold transition-all bg-primary text-white';
+        mBtn.className = 'px-4 sm:px-5 py-2 rounded-lg text-sm font-semibold transition-all text-gray-400';
+      }
+    }
+
+    // 선물하기 버튼 클릭 시 '부모님께 선물' 라디오 자동 선택
+    document.querySelectorAll('.gift-link').forEach(function(a) {
+      a.addEventListener('click', function() {
+        var giftRadio = document.querySelector('input[name="type"][value="gift"]');
+        if (giftRadio) giftRadio.checked = true;
+      });
+    });
+
+    // 사전 신청 폼 제출
+    document.getElementById('preRegForm').addEventListener('submit', async function(e) {
       e.preventDefault();
-      const btn = this.querySelector('button[type="submit"]');
+      var btn = this.querySelector('button[type="submit"]');
       btn.disabled = true;
       btn.textContent = '전송 중...';
-
-      const fd = new FormData(this);
-      const data = Object.fromEntries(fd.entries());
-
+      var fd = new FormData(this);
+      var data = Object.fromEntries(fd.entries());
+      var isGift = data.type === 'gift';
       try {
         await fetch('https://toyou-webhook.launchlane.io/waitlist', {
           method: 'POST',
-          headers: {'Content-Type': 'application/json'},
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data),
         });
-      } catch(err) { /* silent */ }
-
-      gtag('event','sign_up',{event_category:'waitlist',event_label:data.interest||'unknown'});
+      } catch(err) {}
+      gtag('event', 'generate_lead', { event_category: 'pre_register', event_label: isGift ? 'toyou_gift' : 'toyou' });
       this.classList.add('hidden');
-      document.getElementById('formSuccess').classList.remove('hidden');
+      var success = document.getElementById('formSuccess');
+      if (isGift) {
+        success.querySelector('h3').textContent = '선물 사전 신청이 완료되었습니다!';
+        success.querySelector('p').textContent = '앱이 준비되면 이메일로 초대 링크를 보내드리겠습니다.';
+      }
+      success.classList.remove('hidden');
     });
   </script>
 
