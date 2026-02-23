@@ -7,7 +7,7 @@
   (function(){
     var p = new URLSearchParams(window.location.search);
     if (p.has('code') || p.has('error')) {
-      var target = 'toyou:///auth/callback' + window.location.search;
+      var target = 'toyou://auth/callback' + window.location.search;
       if (window.location.hash) target += window.location.hash;
       window.location.replace(target);
     }

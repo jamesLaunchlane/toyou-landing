@@ -12,7 +12,7 @@ export function onRequest(context) {
   const url = new URL(context.request.url);
 
   if (url.searchParams.has('code') || url.searchParams.has('error')) {
-    const target = 'toyou:///auth/callback' + url.search;
+    const target = 'toyou://auth/callback' + url.search;
     return new Response(null, {
       status: 302,
       headers: { 'Location': target },
