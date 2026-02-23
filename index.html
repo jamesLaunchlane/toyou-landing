@@ -2,6 +2,17 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
+  <!-- OAuth 콜백 리다이렉트: GoTrue가 Site URL로 폴백 시 앱 딥링크로 전환 -->
+  <script>
+  (function(){
+    var p = new URLSearchParams(window.location.search);
+    if (p.has('code') || p.has('error')) {
+      var target = 'toyou://auth/callback' + window.location.search;
+      if (window.location.hash) target += window.location.hash;
+      window.location.replace(target);
+    }
+  })();
+  </script>
   <!-- GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-W2M8WTEET9"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-W2M8WTEET9');</script>
